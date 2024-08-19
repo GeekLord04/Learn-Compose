@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Button
@@ -35,6 +38,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
@@ -70,9 +74,9 @@ private fun PreviewFunction() {
 //    SayCheezy("Jingalala")
 //    DrawImage()
 //    ButtonCompose()
-    DesignUser()
-
-
+//    DesignUser()
+//    TextModifiers()
+    CircularImage()
 }
 
 
@@ -241,7 +245,8 @@ fun DesignUser() {
         Icon(
             imageVector = Icons.Default.Face,
             contentDescription = "Face icon",
-            modifier = Modifier.size(35.dp)
+            modifier = Modifier
+                .size(35.dp)
                 .padding(8.dp)
         )
         Column {
@@ -255,4 +260,36 @@ fun DesignUser() {
             )
         }
     }
+}
+
+
+//Modifiers - Modifiers are used to modify the composable
+@Composable
+fun TextModifiers(){
+    Text(
+        text = "Hii",
+        color = Color.White,
+        modifier = Modifier
+            .background(Color.Blue)      //Sequence matter in modifier
+            .padding(20.dp)
+            .border(2.dp, Color.Red)
+            .clip(CircleShape)
+            .background(Color.Gray)
+            .clickable { }         //Only the clip modifier is clickable and not the whole text
+
+        // fillMaxSize() to fill the whole height and width
+        // fillMaxWidth() to fill the whole width
+        // fillMaxHeight() to fill the whole height
+    )
+}
+
+@Composable
+fun CircularImage(){
+    Image(painter = painterResource(id = R.drawable.test1),
+        contentDescription ="",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.size(80.dp)
+            .clip(CircleShape)
+            .border(2.dp,Color.LightGray, CircleShape)
+        )
 }

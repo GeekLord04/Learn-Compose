@@ -61,6 +61,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 //            TextFields()
+//            PreviewItem()
+            NotificationScreen()
         }
     }
 }
@@ -68,15 +70,15 @@ class MainActivity : ComponentActivity() {
 //Preview Function
 // Default value is always required for @Preview annotation to get rendered
 // Therefore we always create a Preview Function
-@Preview(showBackground = true, heightDp = 300, widthDp = 300, showSystemUi = false)
+@Preview(showBackground = true, heightDp = 300, widthDp = 300, showSystemUi = false, backgroundColor = 0xFF888888)
 @Composable
 private fun PreviewFunction() {
 //    SayCheezy("Jingalala")
 //    DrawImage()
 //    ButtonCompose()
-//    DesignUser()
+    DesignUser()
 //    TextModifiers()
-    CircularImage()
+//    CircularImage()
 }
 
 
@@ -288,8 +290,9 @@ fun CircularImage(){
     Image(painter = painterResource(id = R.drawable.test1),
         contentDescription ="",
         contentScale = ContentScale.Crop,
-        modifier = Modifier.size(80.dp)
+        modifier = Modifier
+            .size(80.dp)
             .clip(CircleShape)
-            .border(2.dp,Color.LightGray, CircleShape)
+            .border(2.dp, Color.LightGray, CircleShape)
         )
 }
